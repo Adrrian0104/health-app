@@ -1,12 +1,19 @@
 import { useNavigation, useRootNavigationState } from "expo-router";
 import { View, Text, TextInput, StyleSheet, Alert,TouchableOpacity, Button } from "react-native";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import RegisterScreen from "./RegistrerScreen";
 
 export default function LoginScreen(){
     const navigation = useNavigation();
+    const [showRegister, setShowRegistrer]= useState(false);
+    
     useEffect(()=> {
       navigation.setOptions({headerShown: false});
     },[navigation]);
+
+    if(showRegister){
+      return<RegisterScreen onClose={ ()=> setShowRegistrer(false)}/>
+          }
   
     return (
         <View style={styles.container}>
@@ -17,12 +24,17 @@ export default function LoginScreen(){
 
           <TextInput 
           style={styles.input}
-          placeholder="********"
+          placeholder="**************************"
           secureTextEntry/>
 
 
           <TouchableOpacity style={styles.button}>
             <Text style={styles.buttonText}> Login</Text>
+
+          </TouchableOpacity>
+          
+          <TouchableOpacity onPressIn={()=> setShowRegistrer(true)}>
+            <Text style={styles.link}> Sing up</Text>
 
           </TouchableOpacity>
         </View>
@@ -33,7 +45,7 @@ export default function LoginScreen(){
         flex : 1,
         justifyContent:"center",
         alignItems: "center",
-        backgroundColor:"#95a5a6 "
+        backgroundColor:"#33ff3c"
       },
       title:{
         fontSize: 24,
@@ -64,4 +76,9 @@ export default function LoginScreen(){
         fontSize: 14,
         fontWeight: "bold"
       },
+      link: {
+        marginTop:10,
+        color: "blue",
+        textDecorationLine: "underline"
+      }
     });
