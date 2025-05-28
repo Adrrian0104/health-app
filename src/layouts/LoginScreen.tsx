@@ -45,7 +45,7 @@ export default function LoginScreen(){
         flex : 1,
         justifyContent:"center",
         alignItems: "center",
-        backgroundColor:"#33ff3c"
+        backgroundColor:"#5e3df6"
       },
       title:{
         fontSize: 24,
